@@ -1,0 +1,107 @@
+# ==========================================
+# JobFinder - Root Git Ignore Configuration
+# Stack: React.js | Python FastAPI | MySQL
+# ==========================================
+
+# ------------------------------------------
+# Environment Variables & Secrets
+# ------------------------------------------
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# ------------------------------------------
+# Python & FastAPI
+# ------------------------------------------
+# Bytecode and runtime caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Distribution & Packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# ------------------------------------------
+# Node.js & React Frontend
+# ------------------------------------------
+# Dependencies
+node_modules/
+jspm_packages/
+
+# Production build outputs
+dist/
+build/
+out/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ------------------------------------------
+# Database & Local Storage
+# ------------------------------------------
+*.sqlite
+*.sqlite3
+*.db
+mysql_data/
+*.sql.gz
+*.dump
+
+# ------------------------------------------
+# Operating System & IDE Artifacts
+# ------------------------------------------
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
