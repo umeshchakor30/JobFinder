@@ -66,3 +66,19 @@ jobs:
       - name: Run backend tests
         run: python -m pytest -v
 
+
+  docker-build:
+    name: Docker Image Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build backend Docker image
+        run: docker build -t jobfinder-backend:ci ./backend
+
+      - name: Build frontend Docker image
+        run: docker build -t jobfinder-frontend:ci ./frontend
+
+
