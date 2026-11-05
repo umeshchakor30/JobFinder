@@ -26,7 +26,10 @@ allowed_origins = [
 # Avoids hardcoding or inventing a production domain and forbids wildcard '*'
 frontend_url = os.getenv("FRONTEND_URL")
 if frontend_url and frontend_url.strip():
-    allowed_origins.append(frontend_url.strip())
+    for origin in frontend_url.split(","):
+        clean_origin = origin.strip().rstrip("/")
+        if clean_origin and clean_origin not in allowed_origins:
+            allowed_origins.append(clean_origin)
 
 app.add_middleware(
     CORSMiddleware,

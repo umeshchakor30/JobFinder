@@ -3,7 +3,6 @@ import './App.css'
 import Login from './components/Login.jsx'
 import Register from './components/Register.jsx'
 import Quiz from './components/Quiz.jsx'
-import ApplicationsTracker from './components/ApplicationsTracker'
 
 const TOPICS = [
   {
@@ -342,9 +341,6 @@ function App() {
                 ))}
               </div>
             </section>
-
-            {/* Applications Tracker Section */}
-            <ApplicationsTracker />
           </>
         )}
       </main>
