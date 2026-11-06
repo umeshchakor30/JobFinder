@@ -68,14 +68,36 @@ function Login({ onLoginSuccess, onSwitchToRegister, onBackToDashboard, authNoti
   return (
     <div className="auth-wrapper">
       <div className="auth-card">
-        <button
-          type="button"
-          onClick={onBackToDashboard}
-          className="auth-back-link"
-          aria-label="Back to Dashboard"
-        >
-          ← Back to Dashboard
-        </button>
+        <div className="auth-top-nav">
+          <button
+            type="button"
+            onClick={onBackToDashboard}
+            className="auth-back-link"
+            aria-label="Back to Dashboard"
+          >
+            ← Back to Dashboard
+          </button>
+
+          <div className="auth-top-tabs" role="tablist" aria-label="Authentication views">
+            <button
+              type="button"
+              className="auth-tab-btn active"
+              role="tab"
+              aria-selected="true"
+            >
+              Sign In
+            </button>
+            <button
+              type="button"
+              onClick={onSwitchToRegister}
+              className="auth-tab-btn"
+              role="tab"
+              aria-selected="false"
+            >
+              Register
+            </button>
+          </div>
+        </div>
 
         {authNotice && (
           <div className="auth-guard-notice" role="alert">

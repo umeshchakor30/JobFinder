@@ -122,6 +122,7 @@ function Quiz({ topicKey, onBackToDashboard }) {
   const questions = quiz.questions
   const currentQuestion = questions[currentIndex] || questions[0]
   const currentAnswers = selectedAnswers[currentQuestion.id] || []
+  const isCurrentAnswered = currentAnswers.length > 0
 
   // Selection handler for single and multiple choice questions
   const handleOptionToggle = (optionIndex) => {
@@ -151,8 +152,9 @@ function Quiz({ topicKey, onBackToDashboard }) {
     })
   }
 
-  // Navigation handlers
+  // Navigation handlers (answering current question is mandatory before advancing)
   const handleNext = () => {
+    if (!isCurrentAnswered) return
     if (currentIndex < questions.length - 1) {
       setCurrentIndex((prev) => prev + 1)
     }
@@ -165,6 +167,7 @@ function Quiz({ topicKey, onBackToDashboard }) {
   }
 
   const handleSubmit = () => {
+    if (!isCurrentAnswered) return
     setIsSubmitted(true)
   }
 
@@ -400,24 +403,44 @@ function Quiz({ topicKey, onBackToDashboard }) {
             ← Previous
           </button>
 
-          <div className="right-actions">
-            {currentIndex < questions.length - 1 ? (
-              <button
-                type="button"
-                onClick={handleNext}
-                className="quiz-btn btn-next"
-              >
-                Next →
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={handleSubmit}
-                className="quiz-btn btn-submit"
-              >
-                Submit Practice Quiz
-              </button>
-            )}
+          <div className="right-actions-group">
+            <div className="quiz-mandatory-status" aria-live="polite">
+              {!isCurrentAnswered ? (
+                <span className="mandatory-badge badge-pending">
+                  ⚠️ Select answer to continue
+                </span>
+              ) : (
+                <span className="mandatory-badge badge-ready">
+                  ✓ Answer selected
+                </span>
+              )}
+            </div>
+
+            <div className="right-actions">
+              {currentIndex < questions.length - 1 ? (
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  disabled={!isCurrentAnswered}
+                  className={`quiz-btn btn-next ${!isCurrentAnswered ? 'btn-disabled' : ''}`}
+                  title={!isCurrentAnswered ? 'Please select an answer before continuing to the next question' : 'Proceed to next question'}
+                  aria-disabled={!isCurrentAnswered}
+                >
+                  Next →
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={!isCurrentAnswered}
+                  className={`quiz-btn btn-submit ${!isCurrentAnswered ? 'btn-disabled' : ''}`}
+                  title={!isCurrentAnswered ? 'Please select an answer before submitting the quiz' : 'Submit Practice Quiz'}
+                  aria-disabled={!isCurrentAnswered}
+                >
+                  Submit Practice Quiz
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
